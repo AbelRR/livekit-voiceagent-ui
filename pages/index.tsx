@@ -37,7 +37,6 @@ export default function Landing() {
   const [connectionDetails, setConnectionDetails] = useState<LiveKitConnectionDetails | null>(null)
   const [isDark, setIsDark] = useState(true)
   const [isConnecting, setIsConnecting] = useState(false)
-  const processedSegmentIds = useRef<Set<string>>(new Set())
   const processedFinalSegmentIds = useRef<Set<string>>(new Set())
   const [currentSegment, setCurrentSegment] = useState<Message | null>(null)
   const [isChatVisible, setIsChatVisible] = useState(false)
@@ -133,10 +132,6 @@ export default function Landing() {
     setMessages([])
     setIsMuted(false)
     setIsChatVisible(false)
-  }
-
-  const handleMuteToggle = () => {
-    setIsMuted(!isMuted)
   }
 
   return (
