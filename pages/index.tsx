@@ -64,16 +64,11 @@ export default function Landing() {
       processedFinalSegmentIds.current.add(segmentKey)
 
       setMessages(prev => {
-        // If we have a current segment, convert it to a final message
-        if (currentSegment && currentSegment.id === latestSegment.id) {
-          return [...prev, {
-            ...currentSegment,
-            text: latestSegment.text,
-            final: true
-          }]
-        }
-        // Otherwise add as new message
-        return [...prev, {
+        // Only filter out non-final version if it's from the same speaker
+        const filtered = prev.filter(m => 
+          !(m.id === latestSegment.id && m.isBot === isBot && !m.final)
+        )
+        return [...filtered, {
           text: latestSegment.text,
           isBot,
           timestamp: latestSegment.firstReceivedTime || Date.now(),
@@ -85,10 +80,15 @@ export default function Landing() {
       return
     }
 
-    // For non-final segments, update current segment
+    // For non-final segments
     setCurrentSegment(prev => {
-      // If this is a new speaker or new segment, create new current segment
+      // If this is a new speaker or new segment
       if (!prev || prev.id !== latestSegment.id || prev.isBot !== isBot) {
+        // If there was a previous non-final segment, add it to messages before starting new one
+        if (prev) {
+          setMessages(messages => [...messages, prev])
+        }
+        
         return {
           text: latestSegment.text,
           isBot,
