@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -13,4 +17,204 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 271 100% 64%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 271 100% 64%;
+    --radius: 0.5rem;
+    --lk-control-bg: hsl(var(--background));
+    --lk-control-border: hsl(var(--border));
+    --lk-button-bg: hsl(var(--background));
+    --lk-button-border: hsl(var(--border));
+    --lk-button-hover-bg: hsl(var(--muted));
+    --lk-button-active-bg: hsl(var(--muted));
+    --lk-button-fg: hsl(var(--foreground));
+    --lk-button-disabled-fg: hsl(var(--muted-foreground));
+    --lk-button-disabled-bg: hsl(var(--background));
+    --lk-button-disabled-border: hsl(var(--border));
+    --lk-menu-bg: hsl(var(--background));
+    --lk-menu-border: hsl(var(--border));
+    --lk-menu-fg: hsl(var(--foreground));
+    --lk-menu-hover-bg: hsl(var(--muted));
+    --lk-menu-selected-bg: hsl(var(--muted));
+  }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 271 100% 64%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 271 100% 64%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* LiveKit theme customization */
+[data-lk-theme=default] {
+  --lk-control-bg: transparent;
+  --lk-control-border: transparent;
+  --lk-button-bg: transparent;
+  --lk-button-border: transparent;
+  --lk-button-hover-bg: hsl(var(--muted));
+  --lk-button-active-bg: hsl(var(--muted));
+  --lk-button-fg: hsl(var(--foreground));
+  --lk-button-disabled-fg: hsl(var(--muted-foreground));
+  --lk-button-disabled-bg: transparent;
+  --lk-button-disabled-border: transparent;
+  --lk-disconnect-button-bg: hsl(var(--destructive));
+  --lk-disconnect-button-border: transparent;
+  --lk-disconnect-button-hover-bg: hsl(var(--destructive));
+  --lk-disconnect-button-active-bg: hsl(var(--destructive));
+}
+
+/* LiveKit Component Styles */
+.lk-control-bar {
+  @apply flex items-center gap-2 !important;
+}
+
+.lk-button {
+  @apply h-10 w-10 rounded-full flex items-center justify-center transition-colors !important;
+  @apply bg-background/20 hover:bg-background/40 text-foreground backdrop-blur-sm !important;
+}
+
+.lk-button[data-enabled='false'] {
+  @apply opacity-60 !important;
+}
+
+.lk-disconnect-button {
+  @apply h-10 w-10 rounded-full flex items-center justify-center transition-colors !important;
+  @apply bg-destructive/90 hover:bg-destructive text-destructive-foreground !important;
+}
+
+.lk-device-menu {
+  @apply rounded-md border bg-popover text-popover-foreground shadow-lg !important;
+}
+
+.lk-device-menu__button {
+  @apply px-3 py-2 text-sm hover:bg-muted !important;
+}
+
+/* Message Bubbles */
+.chat-bubble {
+  @apply flex items-start gap-3 px-4;
+}
+
+.chat-bubble.sent {
+  @apply flex-row-reverse;
+}
+
+.chat-bubble-message {
+  @apply rounded-2xl px-4 py-2.5 text-sm max-w-[80%] md:max-w-[70%] shadow-sm transition-all duration-200;
+}
+
+.chat-bubble-message.sent {
+  @apply bg-[#7C3AED] text-white;
+}
+
+.chat-bubble-message.received {
+  @apply bg-secondary/60 text-secondary-foreground backdrop-blur-sm;
+}
+
+.chat-bubble-message.in-progress {
+  @apply opacity-80;
+  animation: none !important;
+}
+
+/* Footer Controls Container */
+.footer-controls {
+  @apply border-t border-border/50 backdrop-blur-sm;
+  background: transparent !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .footer-controls {
+    @apply pb-4;
+  }
+  
+  .chat-bubble {
+    @apply px-2;
+  }
+  
+  .chat-bubble-message {
+    @apply text-sm;
+  }
+}
+
+/* Message Bubbles Container */
+.chat-container {
+  @apply h-full flex flex-col;
+  background: transparent !important;
+}
+
+/* Chat transcript container */
+.chat-transcript {
+  @apply flex-1 overflow-y-auto;
+  height: calc(100vh - 12rem); /* Adjust based on your header/footer heights */
+}
+
+@media (max-width: 768px) {
+  .chat-transcript {
+    height: calc(100vh - 8rem);
+  }
+}
+
+/* Center alignment utilities */
+.content-container {
+  @apply w-full max-w-4xl mx-auto px-4;
+}
+
+/* HyperText container styles */
+.hyper-text-container {
+  @apply flex scale-100 cursor-default overflow-hidden py-2 justify-center;
+}
+
+/* Update the existing HyperText component styles */
+.hyper-text {
+  @apply text-center w-full;
+}
+
+/* Ensure consistent centering for all main elements */
+.main-layout {
+  @apply flex flex-col items-center justify-center;
 }
