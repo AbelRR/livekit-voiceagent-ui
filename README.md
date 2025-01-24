@@ -1,3 +1,6 @@
+
+![2025-01-23 23 31 11](https://github.com/user-attachments/assets/452bd576-26c4-4b4b-ba8b-6c60bda2b914)
+
 Welcome to the NextJS base template bootstrapped using the `create-next-app`. This template supports TypeScript, but you can use normal JavaScript as well.
 
 ## Getting Started
