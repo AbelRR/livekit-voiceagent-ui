@@ -1,5 +1,6 @@
-
 ![2025-01-23 23 31 11](https://github.com/user-attachments/assets/452bd576-26c4-4b4b-ba8b-6c60bda2b914)
+- Add an `.env` with `NEXT_PUBLIC_LIVEKIT_SANDBOX_ID=` set to your LiveKit Token Sandbox ID corresponding to your active LiveKit Agent.
+This is just a UI that you can connect your LiveKit Agent to. Not production ready; this uses LiveKit Sandbox to generate tokens. 
 
 Welcome to the NextJS base template bootstrapped using the `create-next-app`. This template supports TypeScript, but you can use normal JavaScript as well.
 
